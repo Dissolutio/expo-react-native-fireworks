@@ -5,6 +5,19 @@ import { colors } from "./colors";
 
 const AnimatedFireWorks = Animated.createAnimatedComponent(Fireworks);
 
+const interpolation1 = {
+  inputRange: [0, 0.5, 1],
+  outputRange: [colors.red, "transparent", colors.white],
+};
+const interpolation2 = {
+  inputRange: [0, 0.5, 1],
+  outputRange: ["transparent", colors.white, colors.red],
+};
+const interpolation3 = {
+  inputRange: [0, 0.5, 1],
+  outputRange: [colors.white, colors.red, "transparent"],
+};
+
 export const Banner = () => {
   const fireworkColor = useRef(new Animated.Value(0)).current;
 
@@ -25,30 +38,15 @@ export const Banner = () => {
         <Text style={styles.headerText}>Congratulations!</Text>
       </View>
       <View style={[styles.fireworks, { right: "5%", zIndex: 1000 }]}>
-        <AnimatedFireWorks
-          color={fireworkColor.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [colors.red, "transparent", colors.white],
-          })}
-        />
+        <AnimatedFireWorks color={fireworkColor.interpolate(interpolation1)} />
       </View>
       <View style={[styles.fireworks, { left: "5%", top: "10%", zIndex: -1 }]}>
-        <AnimatedFireWorks
-          color={fireworkColor.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: ["transparent", colors.white, colors.red],
-          })}
-        />
+        <AnimatedFireWorks color={fireworkColor.interpolate(interpolation2)} />
       </View>
       <View
         style={[styles.fireworks, { left: "5%", bottom: "10%", zIndex: -1 }]}
       >
-        <AnimatedFireWorks
-          color={fireworkColor.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [colors.white, colors.red, "transparent"],
-          })}
-        />
+        <AnimatedFireWorks color={fireworkColor.interpolate(interpolation3)} />
       </View>
     </View>
   );
