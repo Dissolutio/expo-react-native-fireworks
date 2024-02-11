@@ -28,7 +28,7 @@ export const Banner = () => {
         <AnimatedFireWorks
           color={fireworkColor.interpolate({
             inputRange: [0, 0.5, 1],
-            outputRange: [colors.red, colors.green, colors.white],
+            outputRange: [colors.red, "transparent", colors.white],
           })}
         />
       </View>
@@ -36,7 +36,7 @@ export const Banner = () => {
         <AnimatedFireWorks
           color={fireworkColor.interpolate({
             inputRange: [0, 0.5, 1],
-            outputRange: [colors.green, colors.white, colors.red],
+            outputRange: ["transparent", colors.white, colors.red],
           })}
         />
       </View>
@@ -46,7 +46,7 @@ export const Banner = () => {
         <AnimatedFireWorks
           color={fireworkColor.interpolate({
             inputRange: [0, 0.5, 1],
-            outputRange: [colors.white, colors.red, colors.green],
+            outputRange: [colors.white, colors.red, "transparent"],
           })}
         />
       </View>
