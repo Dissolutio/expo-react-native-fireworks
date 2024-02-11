@@ -42,8 +42,15 @@ export default `<svg viewBox="0 0 69 66" fill="none" xmlns="http://www.w3.org/20
 </g>
 </g>
 <defs>
+<defs>
+<radialGradient id="myGradient">
+  <stop offset="10%" stop-color="gold" />
+  <stop offset="95%" stop-color="red" />
+</radialGradient>
+</defs>
 <clipPath id="clip0">
 <rect width="69" height="66" fill="white"/>
 </clipPath>
 </defs>
+<circle cx="5" cy="5" r="4" fill="url('#myGradient')" />
 </svg>`;
