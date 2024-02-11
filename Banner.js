@@ -63,10 +63,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     padding: 30,
-    width: "80%",
-    backgroundColor: colors.black,
-    height: "30%",
-    // ...colors.black,
+    width: "100%",
+    height: "100%",
+    // backgroundColor: colors.black,
   },
   headerContainer: {
     zIndex: 100,
