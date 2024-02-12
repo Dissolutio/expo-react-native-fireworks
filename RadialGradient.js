@@ -1,11 +1,14 @@
 import React from "react";
-import { View, Dimensions } from "react-native";
+import { View, Dimensions, Animated } from "react-native";
 import Svg, { Defs, RadialGradient, Stop, Ellipse } from "react-native-svg";
 
-export class RadialGradientBackground extends React.Component {
+const HUE_SPEED = 1;
+class RadialGradientBg extends React.Component {
   render() {
+    const { children, innerColor, hueValue } = this.props;
     const windowWidth = Dimensions.get("window").width;
     const windowHeight = Dimensions.get("window").height;
+    const colorHsl = `hsl(${hueValue * HUE_SPEED}, 100%, 60%)`;
     return (
       <View style={{ flex: 1 }}>
         <Svg height="100%" width="100%">
@@ -16,20 +19,16 @@ export class RadialGradientBackground extends React.Component {
               cy={windowHeight / 2}
               rx={Math.max(windowWidth, windowHeight) / 2}
               ry={Math.max(windowWidth, windowHeight) / 2}
-              fx={0}
-              fy={0}
+              // fx={0}
+              // fy={0}
               gradientUnits="userSpaceOnUse"
             >
               <Stop
                 offset="0"
-                stopColor={this.props.innerColor ?? "#fff"}
+                stopColor={innerColor ?? "#fff"}
                 stopOpacity="1"
               />
-              <Stop
-                offset="1"
-                stopColor={this.props.outerColor ?? "#000"}
-                stopOpacity="1"
-              />
+              <Stop offset="1" stopColor={colorHsl ?? "#000"} stopOpacity="1" />
             </RadialGradient>
           </Defs>
           <Ellipse
@@ -40,8 +39,10 @@ export class RadialGradientBackground extends React.Component {
             fill="url(#grad)"
           />
         </Svg>
-        {this.props.children}
+        {children}
       </View>
     );
   }
 }
+export const RadialGradientBackground =
+  Animated.createAnimatedComponent(RadialGradientBg);

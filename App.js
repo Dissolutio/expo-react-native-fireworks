@@ -6,19 +6,20 @@ import { colors } from "./colors";
 import { LinearGradientBackground } from "./LinearGradient";
 import { RadialGradientBackground } from "./RadialGradient";
 
-export const AnimatedRadialGradientBackground =
-  Animated.createAnimatedComponent(RadialGradientBackground);
-
+const hueInterpolation = {
+  inputRange: [0, 1],
+  outputRange: [0, 360],
+};
 export default function App() {
   const outerColor = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.loop(
       Animated.timing(outerColor, {
+        toValue: 1,
         useNativeDriver: false,
         duration: 4000,
         easing: Easing.inOut(Easing.exp),
-        toValue: 1,
       })
     ).start();
   }, []);
@@ -26,15 +27,12 @@ export default function App() {
   return (
     <>
       <View style={styles.container}>
-        <AnimatedRadialGradientBackground
+        <RadialGradientBackground
           innerColor={colors.white}
-          outerColor={outerColor.interpolate({
-            inputRange: [0, 0.5, 1],
-            outputRange: [colors.white, colors.red, "transparent"],
-          })}
+          hueValue={outerColor.interpolate(hueInterpolation)}
         >
           <Banner />
-        </AnimatedRadialGradientBackground>
+        </RadialGradientBackground>
       </View>
       <StatusBar style="auto" />
     </>
