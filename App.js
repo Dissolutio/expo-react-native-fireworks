@@ -19,7 +19,7 @@ export default function App() {
         toValue: 1,
         useNativeDriver: false,
         duration: 4000,
-        easing: Easing.inOut(Easing.exp),
+        // easing: Easing.inOut(Easing.exp),
       })
     ).start();
   }, []);
